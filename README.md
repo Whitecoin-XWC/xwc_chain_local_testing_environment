@@ -3,21 +3,19 @@
 A python script for easily setting up an isolated one-node XWC chain locally.
 
 # Dependencies
-
+* windows
 * Python 3.9
-
 * Using packages: os, re, sys, subprocess, threading, time, json, requests
-
   
 
 # Usage
 
+* Downloads the source code 'start_xwc_local.py' and two binaries 'xwc_cli.exe' and 'xwc_node.exe' in the release attachment.
 * Go into the folder that the scripts and binaries are restored.
 * Run the python script by command "python start_xwc_local.py"
-* Check the output, if the chain blocks are generated, everything works well.
+* Check the output, the chain blocks should be generated constantly if everything works well.
 * The log files "xwc_cli.log" and "xwc_node.log" can be used for debugging issues.
-* the xwc wallets RPC service listens on 127.0.0.1:29000
-
+* By default, the xwc wallet RPC service listens on 127.0.0.1:29000.
 
 
 # Example
