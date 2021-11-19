@@ -136,6 +136,13 @@ class XwcNodeMock:
         print("The file 'config.ini' has been deployed!")
         return True
 
+    def import_xwc_keys(self):
+        print("Start importing miner keys...")
+        _cmd = f"import_key xwc {self.xwc_privkeys}"
+        res = rpc_request(XWC_CLI_RPC_ADDR, "import_key", ["xwc", self.xwc_privkeys])
+        if res is None:
+            print(f"ERROR: Failed to run cmd '_cmd'")
+
     def import_miner_keys(self):
         print("Start importing miner keys...")
         for miner in self.miner_privkeys:
@@ -143,7 +150,7 @@ class XwcNodeMock:
             _cmd = f"import_key {miner} {self.miner_privkeys[miner]}"
             res = rpc_request(XWC_CLI_RPC_ADDR, "import_key", [miner, self.miner_privkeys[miner]])
             if res is None:
-                print(f"Failed to run cmd '_cmd'")
+                print(f"ERROR: Failed to run cmd '_cmd'")
         print("importing miner keys finished!")
 
     def starting_node(self):
@@ -181,7 +188,8 @@ class XwcNodeMock:
             if out is None:
                 print("failed to open xwc_cli wallet!")
 
-        # register miners
+        # register xwc root account and miners
+        self.import_xwc_keys()
         self.import_miner_keys()
 
         # start mining
