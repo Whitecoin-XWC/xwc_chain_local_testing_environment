@@ -13,7 +13,9 @@ WALLET_FILE = "data/my-wallet.json"
 XWC_NODE_LOG = "data/xwc_node.log"
 XWC_CLI_LOG = "data/xwc_cli.log"
 XWC_NODE_RPC_ADDR = "127.0.0.1:8090"
-XWC_CLI_RPC_ADDR = "127.0.0.1:29000"
+XWC_CLI_PRC_PORT=29000
+XWC_CLI_RPC_ADDR = f"127.0.0.1:{XWC_CLI_PRC_PORT}"
+XWC_CLI_LISTEN_RPC_ADDR = f"0.0.0.0:{XWC_CLI_PRC_PORT}"
 XWC_WALLET_PASSWORD = "12345678"
 
 MINING_PARAM = ["miner0", "miner1", "miner2", "miner3", "miner4", "miner5", "miner6", "miner7", "miner8",
@@ -30,7 +32,7 @@ def run_xwc_node():
 
 def run_xwc_cli(chainID):
     subprocess.run(f"xwc_cli.exe --wallet-file={WALLET_FILE} --server-rpc-endpoint=ws://{XWC_NODE_RPC_ADDR} "
-                   f"--rpc-endpoint={XWC_CLI_RPC_ADDR} --chain-id={chainID} > {XWC_CLI_LOG} 2>&1",
+                   f"--rpc-endpoint={XWC_CLI_LISTEN_RPC_ADDR} --chain-id={chainID} > {XWC_CLI_LOG} 2>&1",
                    shell=True,
                    stdout=subprocess.PIPE)
 
